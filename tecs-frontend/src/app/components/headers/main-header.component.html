@@ -1,0 +1,83 @@
+<nav class="navbar navbar-expand-lg navbar-tec py-3">
+  <div class="container">
+    <!-- Logo del Tec -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/dashboard">
+      <img [src]="user?.institutionLogo || 'assets/tec-logo.png'" 
+           alt="Logo Tec" height="50" class="me-3">
+      <div>
+        <h4 class="mb-0 fw-bold text-primary">Sistema TECS</h4>
+        <small class="text-muted">Gestión de Instituciones Educativas</small>
+      </div>
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarContent">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <!-- Menú principal -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/dashboard" routerLinkActive="active">
+            <i class="fas fa-home me-1"></i> Dashboard
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/institutions" routerLinkActive="active">
+            <i class="fas fa-university me-1"></i> Instituciones
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/careers" routerLinkActive="active">
+            <i class="fas fa-graduation-cap me-1"></i> Carreras
+          </a>
+        </li>
+        <li *ngIf="isAdmin" class="nav-item">
+          <a class="nav-link" routerLink="/users" routerLinkActive="active">
+            <i class="fas fa-users me-1"></i> Usuarios
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/reports" routerLinkActive="active">
+            <i class="fas fa-chart-bar me-1"></i> Reportes
+          </a>
+        </li>
+      </ul>
+
+      <!-- Usuario y logout -->
+      <div class="d-flex align-items-center">
+        <div class="dropdown me-3">
+          <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" 
+             data-bs-toggle="dropdown">
+            <img [src]="user?.avatar || 'assets/default-avatar.png'" 
+                 class="rounded-circle me-2" width="40" height="40" alt="Avatar">
+            <div>
+              <small class="d-block text-dark fw-bold">{{ user?.nombreCompleto }}</small>
+              <small class="d-block text-muted">{{ user?.institution || 'Sin institución' }}</small>
+            </div>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <a class="dropdown-item" routerLink="/profile">
+                <i class="fas fa-user me-2"></i> Mi Perfil
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/settings">
+                <i class="fas fa-cog me-2"></i> Configuración
+              </a>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <a class="dropdown-item text-danger" (click)="logout()">
+                <i class="fas fa-sign-out-alt me-2"></i> Cerrar Sesión
+              </a>
+            </li>
+          </ul>
+        </div>
+        <span class="badge bg-primary" *ngIf="isAdmin">Admin</span>
+      </div>
+    </div>
+  </div>
+</nav>

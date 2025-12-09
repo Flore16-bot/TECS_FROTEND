@@ -1,0 +1,159 @@
+<div class="container-fluid mt-4">
+  <!-- Estadísticas rápidas -->
+  <div class="row mb-4">
+    <div class="col-md-3">
+      <div class="card dashboard-card border-primary">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2 text-muted">Instituciones</h6>
+              <h2 class="card-title text-primary">{{ stats?.institutions || 0 }}</h2>
+            </div>
+            <i class="fas fa-university fa-3x text-primary opacity-25"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card dashboard-card border-success">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2 text-muted">Carreras</h6>
+              <h2 class="card-title text-success">{{ stats?.careers || 0 }}</h2>
+            </div>
+            <i class="fas fa-graduation-cap fa-3x text-success opacity-25"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card dashboard-card border-warning">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2 text-muted">Alumnos</h6>
+              <h2 class="card-title text-warning">{{ stats?.students || 0 | number }}</h2>
+            </div>
+            <i class="fas fa-users fa-3x text-warning opacity-25"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-md-3">
+      <div class="card dashboard-card border-info">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <h6 class="card-subtitle mb-2 text-muted">Cumplimiento</h6>
+              <h2 class="card-title text-info">{{ stats?.completion || 0 }}%</h2>
+            </div>
+            <i class="fas fa-chart-line fa-3x text-info opacity-25"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Gráficos -->
+  <div class="row">
+    <div class="col-md-8">
+      <div class="chart-container mb-4">
+        <h5 class="mb-3">Población Esperada vs Obtenida por Carrera</h5>
+        <canvas baseChart
+                [data]="populationChartData"
+                [options]="populationChartOptions"
+                [type]="'bar'">
+        </canvas>
+      </div>
+    </div>
+    
+    <div class="col-md-4">
+      <div class="chart-container mb-4">
+        <h5 class="mb-3">Distribución por Modalidad</h5>
+        <canvas baseChart
+                [data]="modalidadChartData"
+                [options]="pieChartOptions"
+                [type]="'pie'">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Instituciones recientes -->
+  <div class="row">
+    <div class="col-12">
+      <div class="chart-container">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="mb-0">Mis Instituciones</h5>
+          <button class="btn btn-tec btn-sm" routerLink="/institutions/new">
+            <i class="fas fa-plus me-1"></i> Nueva Institución
+          </button>
+        </div>
+        
+        <div class="table-responsive">
+          <table class="table table-tec table-hover">
+            <thead>
+              <tr>
+                <th>Logo</th>
+                <th>Nombre</th>
+                <th>Clave CCT</th>
+                <th>Carreras</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let institution of institutions">
+                <td>
+                  <img [src]="institution.logo || 'assets/default-institution.png'" 
+                       class="rounded" width="50" height="50" alt="Logo">
+                </td>
+                <td>
+                  <strong>{{ institution.nombre }}</strong>
+                  <div class="small text-muted">{{ institution.direccion }}</div>
+                </td>
+                <td><span class="badge bg-dark">{{ institution.claveCCT }}</span></td>
+                <td>
+                  <span class="badge bg-info me-1" 
+                        *ngFor="let carrera of institution.carreras?.slice(0,3)">
+                    {{ carrera.nombre }}
+                  </span>
+                  <span *ngIf="institution.carreras?.length > 3" class="text-muted">
+                    +{{ institution.carreras.length - 3 }} más
+                  </span>
+                </td>
+                <td>
+                  <span [ngClass]="{
+                    'badge bg-success': institution.estado === 'active',
+                    'badge bg-secondary': institution.estado === 'inactive'
+                  }">
+                    {{ institution.estado === 'active' ? 'Activo' : 'Inactivo' }}
+                  </span>
+                </td>
+                <td>
+                  <div class="btn-group btn-group-sm">
+                    <button class="btn btn-outline-primary" 
+                            [routerLink]="['/institutions', institution.id]">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-outline-warning"
+                            [routerLink]="['/institutions/edit', institution.id]">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-outline-danger" (click)="deleteInstitution(institution.id)">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

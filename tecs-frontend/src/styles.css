@@ -1,0 +1,145 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+/* Estilos globales */
+/* src/styles.css */
+:root {
+  --gobierno-blue: #006847;
+  --gobierno-green: #009c3b;
+  --gobierno-red: #ce1126;
+  --gobierno-yellow: #ffcc00;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  margin: 0;
+  padding: 0;
+}
+
+.gov-header {
+  background: linear-gradient(to right, var(--gobierno-blue), var(--gobierno-green));
+  color: white;
+  padding: 8px 0;
+  font-size: 14px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.main-header {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 15px 0;
+}
+
+.tec-card {
+  transition: transform 0.3s ease;
+  border: none;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.tec-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+}
+
+.dashboard-card {
+  border-radius: 15px;
+  border: none;
+  overflow: hidden;
+}
+
+.chart-container {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.form-control, .form-select {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  padding: 12px 15px;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: var(--gobierno-blue);
+  box-shadow: 0 0 0 0.25rem rgba(0, 104, 71, 0.25);
+}
+
+.btn-tec {
+  background: linear-gradient(to right, var(--gobierno-blue), var(--gobierno-green));
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 25px;
+  font-weight: 600;
+}
+
+.btn-tec:hover {
+  background: linear-gradient(to right, var(--gobierno-green), var(--gobierno-blue));
+  color: white;
+}
+
+.navbar-tec {
+  background-color: white !important;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.table-tec {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.table-tec th {
+  background-color: var(--gobierno-blue);
+  color: white;
+  border: none;
+  padding: 15px;
+}
+
+.table-tec td {
+  padding: 12px 15px;
+  vertical-align: middle;
+}
+
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.badge-tec {
+  background: linear-gradient(to right, var(--gobierno-green), var(--gobierno-blue));
+  color: white;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.spinner-tec {
+  color: var(--gobierno-blue);
+}
+
+.alert-tec {
+  border-radius: 10px;
+  border-left: 5px solid var(--gobierno-blue);
+}
+
+.gov-footer {
+  background: linear-gradient(to right, var(--gobierno-blue), var(--gobierno-green));
+  color: white;
+}
+
+.gov-footer a {
+  color: #ffcc00;
+}
+
+.gov-footer a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.main-content {
+  min-height: calc(100vh - 200px);
+}

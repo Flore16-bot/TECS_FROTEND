@@ -1,0 +1,50 @@
+<!-- src/app/app.component.html -->
+<!-- Header del gobierno (siempre visible) -->
+<app-gobierno-header></app-gobierno-header>
+
+<!-- Header principal (solo si está autenticado) -->
+<app-main-header *ngIf="isAuthenticated"></app-main-header>
+
+<!-- Contenido principal -->
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>
+
+<!-- Footer -->
+<footer class="gov-footer mt-5 py-4" *ngIf="isAuthenticated">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h6 class="fw-bold">Sistema TECS</h6>
+        <p class="small">
+          Plataforma de gestión para instituciones educativas del Tecnológico Nacional de México.
+        </p>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold">Enlaces rápidos</h6>
+        <ul class="list-unstyled small">
+          <li><a routerLink="/dashboard" class="text-decoration-none">Dashboard</a></li>
+          <li><a routerLink="/institutions" class="text-decoration-none">Instituciones</a></li>
+          <li><a routerLink="/careers" class="text-decoration-none">Carreras</a></li>
+          <li><a routerLink="/reports" class="text-decoration-none">Reportes</a></li>
+        </ul>
+      </div>
+      <div class="col-md-4">
+        <h6 class="fw-bold">Soporte</h6>
+        <ul class="list-unstyled small">
+          <li><i class="fas fa-envelope me-2"></i> soporte@tecnm.mx</li>
+          <li><i class="fas fa-phone me-2"></i> 55 1234 5678</li>
+          <li><i class="fas fa-clock me-2"></i> L-V 9:00 - 18:00 hrs</li>
+        </ul>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-12 text-center">
+        <small class="text-muted">
+          &copy; {{ currentYear }} Tecnológico Nacional de México. Todos los derechos reservados.
+        </small>
+      </div>
+    </div>
+  </div>
+</footer>
